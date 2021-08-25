@@ -1,18 +1,17 @@
 <template>
-  <div class="q-pa-xl flex flex-center">
-    <div class="q-gutter-xl">
+  <div class="q-pa-md flex flex-center">
+    <div class="q-gutter-s">
       <q-card class="flex flex-center" style="width: 500px; height: 500px">
         <div>
           <div></div>
           <div class="text-center text-h text-bold text-italic">
             W E L C O M E
           </div>
-          <div class="q-pa-md" style="width: 300px">
-            <q-input outlined v-model="text" label="Email" />
-
+          <div class="q-pa-s" style="width: 300px">
+            <q-input filled v-model="text" label="Email" />
             <div
-              class="q-gutter-xl row items-start q-pa-xs"
-              style="width: 600px"
+              class="q-pa-md row items-start q-pa-md"
+              style="width: 300px"
             >
               <q-input
                 rounded
@@ -32,31 +31,20 @@
                 </template>
               </q-input>
             </div>
+
             <q-btn
               outline
               rounded
               color="primary"
               label="login"
-              style="flex flex-center; "
+              style="flex flex-center "
+
             />
           </div>
 
         </div>
 
       </q-card>
-    </div>
-     <div class="q-pa-md">
-    <div class="text-center text-h4 text-bold q-pa-lg"  >
-
-    <div class="q-gutter-sm">
-      <q-radio v-model="shape" val="Chairperson" label="CHAIRPERSON" />
-      <q-radio v-model="shape" val="Admin" label="ADMIN" />
-
-    </div>
-
-    <div class="q-px-sm">
-      Your selection is: <strong>{{ shape }}</strong>
-    </div>
     </div>
   </div>
 </template>
@@ -67,7 +55,7 @@ export default {
       text: '',
       password: '',
       isPwd: true,
-      shape: '',
+      
     };
   },
 };
