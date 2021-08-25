@@ -1,21 +1,21 @@
 <template>
-  <div class="q-pa-md flex flex-center">
-    <div class="q-gutter-s">
-      <q-card class="flex flex-center" style="width: 500px; height: 500px">
+<q-page class = "bg-image">
+  <div class="q-pa-md flex flex-center  ">
+    <div class="q-gutter-s ">
+      <q-card class="flex flex-center q-pt-md" style="width: 300px; height: 300px">
         <div>
           <div></div>
-          <div class="text-center text-h text-bold text-italic">
-            W E L C O M E
+          <div class="text-center text-h4 text-bold text-italic">
+            L O G I N
           </div>
-          <div class="q-pa-s" style="width: 300px">
+          <div class="q-pa-md" style="width: 300px">
             <q-input filled v-model="text" label="Email" />
             <div
               class="q-pa-md row items-start q-pa-md"
               style="width: 300px"
             >
               <q-input
-                rounded
-                outlined
+
                 v-model="password"
                 label="password"
                 filled
@@ -37,16 +37,18 @@
               rounded
               color="primary"
               label="login"
-              style="flex flex-center "
-
+               to = "landingpage "
             />
+
           </div>
 
         </div>
 
-      </q-card>
+
+</q-card>
     </div>
   </div>
+  </q-page>
 </template>
 <script>
 export default {
@@ -55,7 +57,7 @@ export default {
       text: '',
       password: '',
       isPwd: true,
-      
+
     };
   },
 };
