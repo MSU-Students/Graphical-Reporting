@@ -30,7 +30,7 @@
 
 <style >
 .bg-image{
-  background-image: url(../assets/image/graph.jpeg );
+  background-image: url(../assets/image/pexels.jpg);
   background-blend-mode: overlay;
   background-position: center;
   background-color: rgb(red, 50, 240);

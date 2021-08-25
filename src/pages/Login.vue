@@ -37,8 +37,9 @@
               rounded
               color="primary"
               label="login"
-               to = "landingpage "
+              to="landingpage"
             />
+
 
           </div>
 
