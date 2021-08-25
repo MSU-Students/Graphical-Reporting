@@ -4,7 +4,8 @@
     <div class="q-gutter-s ">
       <q-card class="flex flex-center q-pt-md" style="width: 300px; height: 300px">
         <div>
-          <div></div>
+          <div>
+          </div>
           <div class="text-center text-h4 text-bold text-italic">
             L O G I N
           </div>
