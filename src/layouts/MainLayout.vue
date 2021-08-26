@@ -108,3 +108,12 @@ export default class MainLayout extends Vue {
   }
 }
 </script>
+<style>
+.bg-image {
+  background-image: url(../assets/image/pexels.jpg);
+  background-blend-mode: overlay;
+  background-position: center;
+  background-color: rgb(red, 50, 240);
+  background-size: 75%;
+}
+</style>
