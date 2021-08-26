@@ -3,21 +3,21 @@ import { RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('layouts/loginland.vue'),
     children: [
-      { path: '/Homepage', component: () => import('pages/Homepage.vue') },
-
+      { path: '', component: () => import('pages/landingpage.vue') },
+      { path: '', component: () => import('pages/Login.vue') },
     ],
+
+
   },
   {
     path: '/',
-    component: () => import('layouts/loginland.vue'),
+    component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '/landingpage', component: () => import('pages/landingpage.vue') },
-      { path: '/Login', component: () => import('pages/Login.vue') },
+      { path: '', component: () => import('pages/Homepage.vue') },
+
     ],
-
-
   },
 
 
