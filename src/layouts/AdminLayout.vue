@@ -11,11 +11,11 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title>
-          Quasar App
+        <q-toolbar-title style="text-bold text-center">
+          MSU Student Management System with Data Driven Graphical Report
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+
       </q-toolbar>
     </q-header>
 
@@ -23,7 +23,7 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      class="bg-grey-1"
+      class="bg-white"
     >
       <q-list>
         <q-item-label
@@ -52,6 +52,12 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
   {
+    title: 'Profile',
+    caption: 'User Profile',
+    icon: 'record_voice_over',
+    link: 'https://forum.quasar.dev'
+  },
+  {
     title: 'Docs',
     caption: 'quasar.dev',
     icon: 'school',
@@ -68,12 +74,6 @@ const linksList = [
     caption: 'chat.quasar.dev',
     icon: 'chat',
     link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
   },
   {
     title: 'Twitter',
@@ -108,3 +108,12 @@ export default class MainLayout extends Vue {
   }
 }
 </script>
+<style>
+.bg-image {
+  background-image: url(../assets/image/pexel.jpg);
+  background-blend-mode: overlay;
+  background-position: center;
+  background-color: rgb(red, 50, 240);
+  background-size: 100%;
+}
+</style>
