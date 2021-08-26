@@ -2,10 +2,7 @@
   <q-page class="bg-image">
     <div class="q-pa-md flex flex-center">
       <div class="q-gutter-s">
-        <q-card
-          class="flex flex-center q-pt-md bg-orange-3 "
-          style="width: 300px; height: 300px; transapa "
-        >
+
           <div>
             <div></div>
             <div class="text-center text-h4 text-bold text-italic">
@@ -40,7 +37,7 @@
               />
             </div>
           </div>
-        </q-card>
+
       </div>
     </div>
   </q-page>
