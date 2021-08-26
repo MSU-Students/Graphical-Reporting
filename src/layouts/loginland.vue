@@ -12,7 +12,7 @@
   background-image: url(../assets/image/pexels.jpg);
   background-blend-mode: overlay;
   background-position: center;
-  background-color: rgb(red, 50, 240);
+  background-color: rgb(rgb(29, 28, 28));
   background-size: 100%;
 }
 </style>
