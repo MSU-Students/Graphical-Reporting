@@ -1,12 +1,16 @@
 <template>
   <q-page class="bg-image">
-    <div class="flex flex-center absolute-center">
-      <div class="q-pa-xxl">
+
+    <div class="flex flex-center q-pt-xl ">
+      <q-card flat class=" flex flex-center  bg-orange-2">
+      <div class="q-pa-md">
+
         <div>
-          <div class="text-center text-h4 text-bold text-italic">L O G I N</div>
-          <div class="q-pa-md" style="width: 300px">
+
+          <div class="text-center text-h4 text-bold text-italic text-orange-10">L O G I N</div>
+          <div class="q-pa-md" >
             <q-input filled v-model="text" label="Email" />
-            <div class="q-pa-md row items-start" style="width: 300px">
+            <div class="q-pa-md row items-start" >
               <q-input
                 v-model="password"
                 label="password"
@@ -23,7 +27,7 @@
                 </template>
               </q-input>
             </div>
-
+            <div class="flex flex-center">
             <q-btn
               outline
               rounded
@@ -31,10 +35,14 @@
               label="login"
               to="landingpage"
             />
+            </div>
           </div>
+
         </div>
       </div>
+</q-card>
     </div>
+
   </q-page>
 </template>
 <script>

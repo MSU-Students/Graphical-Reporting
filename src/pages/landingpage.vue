@@ -18,6 +18,7 @@
       Welcome To The MSU Student Management System with Data Driven Graphical
       Reporting
     </div>
+    <q-card flat class=" flex flex-center q-pa-s">
     <div class="text-center flex flex-center text-h6 text-arial text-orange-10 q-pa-md">
       This project will show a graphical report of General Enrollment Statistic,
       General Graduate Statistic, General Grade Statistic, General GPA
@@ -25,6 +26,7 @@
       Statistic, General Failing Grade Statistic, demographical, gender, course,
       address.
     </div>
+    </q-card>
     <div class="flex flex-center q-pa-lg">
       <q-btn
       to="Login"

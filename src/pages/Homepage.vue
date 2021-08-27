@@ -1,8 +1,8 @@
 <template>
   <q-page class="bg-image">
 
-     <div class="text-center text-h4 text-bold text-italic">
-              L O G I N
+     <div class=" flex flex-center q-pa-xl text-brown text-center text-h4 text-bold text-italic">
+              MSU Student Management System with Data Driven Graphical Report
             </div>
   </q-page>
 </template>

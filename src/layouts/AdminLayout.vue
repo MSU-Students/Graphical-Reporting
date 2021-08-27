@@ -52,16 +52,11 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
   {
+
     title: 'Profile',
-    caption: 'User Profile',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
+    caption: 'User Profie',
     icon: 'school',
-    link: 'https://quasar.dev'
+    to:'ManageAcc',
   },
   {
     title: 'Github',
@@ -74,6 +69,12 @@ const linksList = [
     caption: 'chat.quasar.dev',
     icon: 'chat',
     link: 'https://chat.quasar.dev'
+  },
+  {
+    title: 'Forum',
+    caption: 'forum.quasar.dev',
+    icon: 'record_voice_over',
+    link: 'https://forum.quasar.dev'
   },
   {
     title: 'Twitter',
