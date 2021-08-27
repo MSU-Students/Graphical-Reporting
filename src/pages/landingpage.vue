@@ -13,19 +13,19 @@
       </div>
     </q-card> -->
 
-    <q-page-container class="bg-transparent absolute-center">
-      <div class="text-center text-h3 text-bold text-arial text-brown q-pt-lg">
+    <q-page-container class="bg-transparent">
+      <div class=" text-center text-h3 text-bold text-arial text-brown q-pt-xl">
       Welcome To The MSU Student Management System with Data Driven Graphical
       Reporting
     </div>
-    <div class="text-center text-h6 text-arial text-orange-10 q-pa-lg">
+    <div class="text-center flex flex-center text-h6 text-arial text-orange-10 q-pa-md">
       This project will show a graphical report of General Enrollment Statistic,
       General Graduate Statistic, General Grade Statistic, General GPA
       Statistic, General CGPA Statistic, General Dropout Statistic, General INC
       Statistic, General Failing Grade Statistic, demographical, gender, course,
       address.
     </div>
-    <div class="flex flex-center">
+    <div class="flex flex-center q-pa-lg">
       <q-btn
       to="Login"
 
