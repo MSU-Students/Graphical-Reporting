@@ -1,50 +1,61 @@
 <template>
   <q-page class="bg-image">
-    <!-- <q-card flat class="bg-transparent absolute-center">
-      <div class="text-h3 flex flex-center q-ml-xl">
-        MSU Student Management System with Data Driven Graphical Reporting
+    <q-page-container class="">
+
+<div class="flex flex-center absolute-right q-pa-xl ">
+      <q-card flat class=" flex flex-center  ">
+      <div class="q-pa-lg">
+
+        <div>
+
+          <div class="text-center text-h4 text-bold text-italic text-pink-10">L O G I N H E R E</div>
+          <div class="q-pa-md" >
+            <q-input filled v-model="text" label="Email" />
+            <div class="q-pa-md row items-start" >
+              <q-input
+                v-model="password"
+                label="password"
+                filled
+                :type="isPwd ? 'password' : 'text'"
+                hint=""
+              >
+                <template v-slot:append>
+                  <q-icon
+                    :name="isPwd ? 'visibility_off' : 'visibility'"
+                    class="cursor-pointer"
+                    @click="isPwd = !isPwd"
+                  />
+                </template>
+              </q-input>
+            </div>
+            <div class="flex flex-center">
+            <q-btn
+              outline
+              rounded
+              color="primary"
+              label="login"
+              to="landingpage"
+            />
+            </div>
+          </div>
+
+        </div>
       </div>
-      <div class="text-subtitle1 flex flex-center">
-        This project will show a graphical report of General Enrollment
-        Statistic, General Graduate Statistic, General Grade Statistic, General
-        GPA Statistic, General CGPA Statistic, General Dropout Statistic,
-        General INC Statistic, General Failing Grade Statistic, demographical,
-        gender, course, address
-      </div>
-    </q-card> -->
-
-    <q-page-container class="bg-transparent">
-      <div class=" text-center text-h3 text-bold text-arial text-brown q-pt-xl">
-      Welcome To The MSU Student Management System with Data Driven Graphical
-      Reporting
+</q-card>
     </div>
-    <q-card flat class=" flex flex-center q-pa-s">
-    <div class="text-center flex flex-center text-h6 text-arial text-orange-10 q-pa-md">
-      This project will show a graphical report of General Enrollment Statistic,
-      General Graduate Statistic, General Grade Statistic, General GPA
-      Statistic, General CGPA Statistic, General Dropout Statistic, General INC
-      Statistic, General Failing Grade Statistic, demographical, gender, course,
-      address.
-    </div>
-    </q-card>
-    <div class="flex flex-center q-pa-lg">
-      <q-btn
-      to="Login"
 
-      >
-        Proceed
 
-      </q-btn>
-    </div>
     </q-page-container>
-
   </q-page>
 </template>
-
 <script>
 export default {
   data() {
-    return {};
+    return {
+     text: '',
+      password: '',
+      isPwd: true,
+      };
   },
 };
 </script>

@@ -8,7 +8,7 @@
           round
           icon="menu"
           aria-label="Menu"
-          @click="toggleLeftDrawer"
+
         />
 
         <q-toolbar-title>
@@ -20,88 +20,91 @@
     </q-header>
 
     <q-drawer
-        v-model="drawer"
-        show-if-above
-        :width="200"
-        :breakpoint="500"
-        bordered
-        content-class="bg-grey-3"
-      >
-        <q-scroll-area class="fit">
-          <q-list>
+      v-model="leftDrawerOpen"
+      show-if-above
+      bordered
+      class="bg-grey-1"
+    >
+      <q-list>
+        <q-item-label
+          header
+          class="text-grey-8"
+        >
+          Essential Links
+        </q-item-label>
 
-            <template v-for="(menuItem, index) in menuList">
-              <q-item :key="index" clickable :active="menuItem.label === 'Outbox'" v-ripple>
-                <q-item-section avatar>
-                  <q-icon :name="menuItem.icon" />
-                </q-item-section>
-                <q-item-section>
-                  {{ menuItem.label }}
-                </q-item-section>
-              </q-item>
-              <q-separator :key="'sep' + index"  v-if="menuItem.separator" />
-            </template>
+        <EssentialLink
+          v-for="link in essentialLinks"
+          :key="link.title"
+          v-bind="link"
+        />
+      </q-list>
+    </q-drawer>
 
-          </q-list>
-        </q-scroll-area>
-      </q-drawer>
+    <q-page-container>
+      <router-view />
+    </q-page-container>
+  </q-layout>
+</template>
 
-      <q-page-container>
-        <q-page padding>
-          <p v-for="n in 15" :key="n">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
-          </p>
-        </q-page>
-      </q-page-container>
-      </q-layout>
+<script lang="ts">
+import EssentialLink from 'components/EssentialLink.vue'
 
-
-      <script>
-const menuList = [
+const linksList = [
   {
-    icon: 'inbox',
-    label: 'Inbox',
-    separator: true
+    title: 'Docs',
+    caption: 'quasar.dev',
+    icon: 'school',
+    link: 'https://quasar.dev'
   },
   {
-    icon: 'send',
-    label: 'Outbox',
-    separator: false
+    title: 'Github',
+    caption: 'github.com/quasarframework',
+    icon: 'code',
+    link: 'https://github.com/quasarframework'
   },
   {
-    icon: 'delete',
-    label: 'Trash',
-    separator: false
+    title: 'Discord Chat Channel',
+    caption: 'chat.quasar.dev',
+    icon: 'chat',
+    link: 'https://chat.quasar.dev'
   },
   {
-    icon: 'error',
-    label: 'Spam',
-    separator: true
+    title: 'Forum',
+    caption: 'forum.quasar.dev',
+    icon: 'record_voice_over',
+    link: 'https://forum.quasar.dev'
   },
   {
-    icon: 'settings',
-    label: 'Settings',
-    separator: false
+    title: 'Twitter',
+    caption: '@quasarframework',
+    icon: 'rss_feed',
+    link: 'https://twitter.quasar.dev'
   },
   {
-    icon: 'feedback',
-    label: 'Send Feedback',
-    separator: false
+    title: 'Facebook',
+    caption: '@QuasarFramework',
+    icon: 'public',
+    link: 'https://facebook.quasar.dev'
   },
   {
-    icon: 'help',
-    iconColor: 'primary',
-    label: 'Help',
-    separator: false
+    title: 'Quasar Awesome',
+    caption: 'Community Quasar projects',
+    icon: 'favorite',
+    link: 'https://awesome.quasar.dev'
   }
-]
+];
 
-export default {
-  data () {
-    return {
-      drawer: false,
-      menuList
-    }
+import { Vue, Options } from 'vue-class-component'
+
+@Options({
+  components: { EssentialLink }
+})
+export default class MainLayout extends Vue {
+  leftDrawerOpen = false;
+  essentialLinks = linksList;
+  toggleLeftDrawer () {
+    this.leftDrawerOpen = !this.leftDrawerOpen
   }
 }
 </script>

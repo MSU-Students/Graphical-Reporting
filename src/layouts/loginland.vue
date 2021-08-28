@@ -9,7 +9,7 @@
 
 <style>
 .bg-image {
-  background-image: url(../assets/image/Capture.png);
+  background-image: url(../assets/image/Capture1.png);
   background-blend-mode: overlay;
   background-position: center;
   background-color: rgb(rgb(29, 28, 28));
