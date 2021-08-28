@@ -15,11 +15,11 @@ const routes: RouteRecordRaw[] = [
 
   },
   {
-    path: '/',
+    path: '/a/',
     component: () => import('layouts/AdminLayout.vue'),
     children: [
-      { path: '/Homepage', component: () => import('pages/Homepage.vue') },
-      { path: '/ManageAcc', component: () => import('pages/ManageAcc.vue') },
+      { path: 'Homepage', component: () => import('pages/Homepage.vue') },
+      { path: 'ManageAcc', component: () => import('pages/ManageAcc.vue') },
 
     ],
   },
