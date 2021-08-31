@@ -1,8 +1,50 @@
 <template>
   <q-page class="bg-image">
+<div class="flex flex-center q-pl-xl  " style="max-width: 350px ">
+    <q-list bordered class="rounded-borders q-pl-lg text-blue">
+      <q-expansion-item
+
+        icon="perm_identity"
+        label="About System"
+        caption="Rohma S. Carim"
+     >
+        <q-card  >
+          <q-card-section>
+            This capstone project entitled “MSU Student Management System with Data Driven
+             Graphical Reporting” is a software development project focused on the improvement
+              and development of a software that will automate the current paper-based records,
+               direct access all aspects
+            of a student’s information and data-driven graphical report.
+          </q-card-section>
+        </q-card>
+      </q-expansion-item>
+
+    </q-list>
+  </div>
+
+<div class=" flex flex-center q-pl-xl   " style="max-width: 350px ">
+    <q-list bordered class="rounded-borders q-pl-lg text-blue">
+      <q-expansion-item
+        expand-separator
+        icon="perm_identity"
+        label="Account settings"
+        caption="John Doe"
+      >
+        <q-card>
+          <q-card-section>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
+            commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
+            eveniet doloribus ullam aliquid.
+          </q-card-section>
+        </q-card>
+      </q-expansion-item>
+
+    </q-list>
+  </div>
+
     <q-page-container class="">
 
-<div class="flex flex-center absolute-right q-pa-xl ">
+      <div class="flex flex-center absolute-right q-pa-xl ">
       <q-card flat class=" flex flex-center  ">
       <div class="q-pa-lg">
 
@@ -34,7 +76,7 @@
               rounded
               color="primary"
               label="login"
-              to="landingpage"
+              to="Homepage"
             />
             </div>
           </div>
