@@ -19,7 +19,7 @@
 
 
 
-            <q-item clickable v-ripple to="/Login">
+            <q-item clickable v-ripple >
               <q-item-section avatar>
                 <q-icon name="inbox" />
               </q-item-section>
