@@ -22,7 +22,7 @@
     </div>
 
     <q-page-container class="">
-      <div class="flex flex-center absolute-right">
+      <div class="flex flex-center absolute-right q-pr-xl">
         <q-card class="flex flex-center">
           <div class="q-pa-lg">
             <div>

@@ -1,10 +1,10 @@
 <template>
-  <div class="q-pa-md">
-    <q-layout view="hHh Lpr lff" container style="height: 300px" class="shadow-2 rounded-borders">
-      <q-header elevated class="bg-black">
+
+    <q-layout view="lHh Lpr lff">
+      <q-header elevated class="bg-cyan-8">
         <q-toolbar>
-          <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
           <q-toolbar-title>Header</q-toolbar-title>
+          <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
         </q-toolbar>
       </q-header>
 
@@ -12,85 +12,79 @@
         v-model="drawer"
         show-if-above
         :width="200"
-        :breakpoint="500"
-        bordered
-        content-class="bg-grey-3"
+        :breakpoint="400"
       >
-        <q-scroll-area class="fit">
-          <q-list>
+        <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd">
+          <q-list padding>
 
-            <template v-for="(menuItem, index) in menuList">
-              <q-item :key="index" clickable :active="menuItem.label === 'Outbox'" v-ripple>
-                <q-item-section avatar>
-                  <q-icon :name="menuItem.icon" />
-                </q-item-section>
-                <q-item-section>
-                  {{ menuItem.label }}
-                </q-item-section>
-              </q-item>
-              <q-separator :key="'sep' + index"  v-if="menuItem.separator" />
-            </template>
 
+
+            <q-item clickable v-ripple to="/Login">
+              <q-item-section avatar>
+                <q-icon name="inbox" />
+              </q-item-section>
+
+              <q-item-section>
+                Inbox
+              </q-item-section>
+            </q-item>
+
+            <q-item active clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="star" />
+              </q-item-section>
+
+              <q-item-section>
+                Star
+              </q-item-section>
+            </q-item>
+
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="send" />
+              </q-item-section>
+
+              <q-item-section>
+                Send
+              </q-item-section>
+            </q-item>
+
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="drafts" />
+              </q-item-section>
+
+              <q-item-section>
+                Drafts
+              </q-item-section>
+            </q-item>
           </q-list>
         </q-scroll-area>
+
+        <q-img class="absolute-top" src="https://cdn.quasar.dev/img/material.png" style="">
+          <div class="absolute-bottom bg-transparent">
+            <q-avatar size="" class="">
+              <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+            </q-avatar>
+            <div class="text-weight-bold">Razvan Stoenescu</div>
+            <div>@rstoenescu</div>
+          </div>
+        </q-img>
       </q-drawer>
 
       <q-page-container>
         <q-page padding>
-          <p v-for="n in 15" :key="n">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
-          </p>
+
         </q-page>
       </q-page-container>
     </q-layout>
-  </div>
+
 </template>
-
 <script>
-const menuList = [
-  {
-    icon: 'inbox',
-    label: 'Inbox',
-    separator: true
-  },
-  {
-    icon: 'send',
-    label: 'Outbox',
-    separator: false
-  },
-  {
-    icon: 'delete',
-    label: 'Trash',
-    separator: false
-  },
-  {
-    icon: 'error',
-    label: 'Spam',
-    separator: true
-  },
-  {
-    icon: 'settings',
-    label: 'Settings',
-    separator: false
-  },
-  {
-    icon: 'feedback',
-    label: 'Send Feedback',
-    separator: false
-  },
-  {
-    icon: 'help',
-    iconColor: 'primary',
-    label: 'Help',
-    separator: false
-  }
-]
-
 export default {
   data () {
     return {
-      drawer: false,
-      menuList
+      drawer: false
     }
   }
 }
