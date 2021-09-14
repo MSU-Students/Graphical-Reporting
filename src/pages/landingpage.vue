@@ -30,7 +30,9 @@
                 Login to Continue
               </div>
               <div class="q-pa-lg">
-                <q-input filled v-model="text" label="Email" />
+                <q-input filled v-model="text" label="Email" :rules="[
+                  (val) => (val && val.length > 0) || 'Input your Username',
+                ]" />
                 <div class="row items-start">
                   <q-input
                     v-model="password"
@@ -38,12 +40,16 @@
                     filled
                     :type="isPwd ? 'password' : 'text'"
                     hint=""
+                    :rules="[
+                  (val) => (val && val.length > 0) || 'Input your Username',
+                ]"
                   >
                     <template v-slot:append>
                       <q-icon
                         :name="isPwd ? 'visibility_off' : 'visibility'"
                         class="cursor-pointer"
                         @click="isPwd = !isPwd"
+
                       />
                     </template>
                   </q-input>

@@ -1,9 +1,9 @@
 <template>
 
     <q-layout view="lHh Lpr lff">
-      <q-header elevated class="bg-cyan-8">
+      <q-header elevated class="bg-pink-10">
         <q-toolbar>
-          <q-toolbar-title>Header</q-toolbar-title>
+          <q-toolbar-title>MSU Student Management System with Data Driven Graphical Reporting</q-toolbar-title>
           <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
         </q-toolbar>
       </q-header>
@@ -61,10 +61,10 @@
           </q-list>
         </q-scroll-area>
 
-        <q-img class="absolute-top" src="https://cdn.quasar.dev/img/material.png" style="">
+        <q-img class="flex flex-center absolute-top q-pa-xl " style="">
           <div class="absolute-bottom bg-transparent">
             <q-avatar size="" class="">
-              <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+              <img src="../assets/image/annie.jpg">
             </q-avatar>
             <div class="text-weight-bold">Razvan Stoenescu</div>
             <div>@rstoenescu</div>
