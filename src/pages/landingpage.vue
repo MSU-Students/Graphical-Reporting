@@ -29,42 +29,54 @@
               <div class="text-h4 text-bold text-pink-10">
                 Login to Continue
               </div>
-              <div class="q-pa-lg">
-                <q-input filled v-model="text" label="Email" :rules="[
-                  (val) => (val && val.length > 0) || 'Input your Username',
-                ]" />
-                <div class="row items-start">
-                  <q-input
-                    v-model="password"
-                    label="password"
-                    filled
-                    :type="isPwd ? 'password' : 'text'"
-                    hint=""
-                    :rules="[
+
+               <q-card-section>
+            <q-form class="q-gutter-md">
+              <q-input
+                v-model="text"
+                label="Username"
+                :rules="[
                   (val) => (val && val.length > 0) || 'Input your Username',
                 ]"
-                  >
-                    <template v-slot:append>
-                      <q-icon
-                        :name="isPwd ? 'visibility_off' : 'visibility'"
-                        class="cursor-pointer"
-                        @click="isPwd = !isPwd"
+              >
+                <template v-slot:prepend>
+                  <q-icon name="people" />
+                </template>
+              </q-input>
 
-                      />
-                    </template>
-                  </q-input>
-                </div>
-                <div class="flex flex-center q-pl-lg">
-                  <q-btn
-                    class=""
-                    color="white"
-                    text-color="black"
-                    label="LOGIN"
-                    to="ManageStudentPage"
+              <q-input
+                v-model="password"
+                label="Password"
+                :type="isPwd ? 'password' : 'text'"
+                :rules="[
+                  (val) => (val && val.length > 0) || 'Input your password',
+                ]"
+              >
+                <template v-slot:append>
+                  <q-icon
+                    :name="isPwd ? 'visibility_off' : 'visibility'"
+                    class="cursor-pointer"
+                    @click="isPwd = !isPwd"
                   />
-                </div>
+                </template>
+                <template v-slot:prepend>
+                  <q-icon name="lock" />
+                </template>
+              </q-input>
+
+              <div>
+                <q-btn
+                  class="full-width"
+                  label="Login"
+                  color="pink-10"
+                  size="md"
+
+                />
               </div>
-            </div>
+            </q-form>
+          </q-card-section>
+
+</div>
           </div>
         </q-card>
       </div>

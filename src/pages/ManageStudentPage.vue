@@ -1,11 +1,23 @@
 <template>
-  <div class="q-pa-md">
+  <div class="">
+     <div class="text-h4 text-bold">
+      <q-icon
+        name="account_circle"
+        color="light-blue-6"
+        style="font-size: 4rem"
+      />
+      Account Management
+    </div>
+
+    <br />
     <q-table
       title="Rohma"
       :rows="rows"
       :columns="columns"
       row-key="name"
-    />
+
+   />
+
   </div>
 </template>
 <script>
