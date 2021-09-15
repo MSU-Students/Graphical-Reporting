@@ -60,7 +60,7 @@
                     color="white"
                     text-color="black"
                     label="LOGIN"
-                    to="Homepage"
+                    to="ManageStudentPage"
                   />
                 </div>
               </div>
