@@ -40,7 +40,8 @@
                 ]"
               >
                 <template v-slot:prepend>
-                  <q-icon name="people" />
+                  <q-icon name="people"
+                  color="pink-10" />
                 </template>
               </q-input>
 
@@ -57,10 +58,12 @@
                     :name="isPwd ? 'visibility_off' : 'visibility'"
                     class="cursor-pointer"
                     @click="isPwd = !isPwd"
+                    color="pink-10"
                   />
                 </template>
                 <template v-slot:prepend>
-                  <q-icon name="lock" />
+                  <q-icon name="lock"
+                  color="pink-10"/>
                 </template>
               </q-input>
 
