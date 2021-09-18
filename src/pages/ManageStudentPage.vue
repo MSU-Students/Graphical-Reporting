@@ -3,7 +3,7 @@
      <div class="text-h4 text-bold">
       <q-icon
         name="account_circle"
-        color="light-blue-6"
+        color="pink-10"
         style="font-size: 4rem"
       />
       Account Management

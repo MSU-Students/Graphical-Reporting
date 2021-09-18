@@ -68,13 +68,7 @@
               </q-input>
 
               <div>
-                <q-btn
-                  class="full-width"
-                  label="Login"
-                  color="pink-10"
-                  size="md"
-
-                />
+                <q-btn class="text-bold text-subtitle1 full-width" color="white" text-color="pink-10" label="L o g i n" />
               </div>
             </q-form>
           </q-card-section>
