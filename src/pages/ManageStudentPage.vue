@@ -47,90 +47,149 @@
               <q-btn
                 color="pink-10"
                 dense
-                flat
+                round
                 size="sm"
                 icon="add"
+
                 @click="addUser = true"
               />
-              <q-dialog v-model="addUser" persistent>
-                <q-card style="width: 350px">
-                  <q-card-section>
-                    <div class="text-h6">Add User</div>
-                    <q-space />
-                    <q-btn flat round dense icon="close" v-close-popup />
-                  </q-card-section>
+              <q-dialog v-model="addUser"  >
+                <q-card style="width: 700px">
+                 <q-toolbar>
+            <q-avatar>
+              <q-icon name="book_online" size="sm" />
+            </q-avatar>
+
+            <q-toolbar-title
+              ><span class="text-weight-bold">Add</span>
+              Appointment</q-toolbar-title
+            >
+
+            <q-btn flat round dense icon="close" v-close-popup />
+          </q-toolbar>
 
                   <q-card-section class="q-gutter-md">
+
+                    <div class="row q-col-gutter-sm q-ma-xs q-mr-sm">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input outlined v-model="fname" label="First Name" />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input outlined v-model="lname" label="Middle Initial" />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input outlined v-model="mname" label="Last Name" />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input outlined v-model="Religion" label="Religion" />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input outlined v-model="Tribe" label="Tribe" />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input
                       outlined
                       v-model="Nationality"
                       label="Nationality"
                     />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input outlined v-model="Birthday" label="Birthday" />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input outlined v-model="Birthplace" label="Birthplace" />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input outlined v-model="Father" label="Father" />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input outlined v-model="Mother" label="Mother" />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input outlined v-model="IDnumder" label="IDnumder" />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input outlined v-model="Degree" label="Degree" />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input outlined v-model="YearLevel" label="YearLevel" />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input
                       outlined
                       v-model="AcademicAdviser"
                       label="AcademicAdviser"
                     />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input
                       outlined
                       v-model="Scholarship"
                       label="Scholarship"
                     />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input
                       outlined
                       v-model="AcademicStatus"
                       label="AcademicStatus"
                     />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input outlined v-model="Admitted" label="Admitted" />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input
                       outlined
                       v-model="HomeAddress"
                       label="HomeAddress"
                     />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input
                       outlined
                       v-model="CampusAddress"
                       label="CampusAddress"
                     />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input
                       outlined
                       v-model="MobileNumber"
                       label="MobileNumber"
                     />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input
                       outlined
                       v-model="EmailAddress"
                       label="EmailAddress"
                     />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input
                       outlined
                       v-model="FamilyAnnualIncome"
                       label="FamilyAnnualIncome"
                     />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input
                       outlined
                       v-model="email"
                       label="Email"
                       type="email"
                     />
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-select
                       outlined
                       v-model="Gender"
                       :options="options"
                       label="Gender"
                     />
+                    </div>
+                    </div>
                   </q-card-section>
 
                   <q-card-actions align="right">
@@ -140,13 +199,13 @@
                 </q-card>
               </q-dialog>
               <q-btn
-                round
-                color="pink-10"
+
+                color="green-10"
                 icon="edit"
                 size="sm"
                 class="q-ml-sm"
-                flat
                 dense
+                round
                 @click="editRow = true"
               />
               <q-dialog v-model="editRow" persistent>
@@ -241,9 +300,8 @@
                 icon="delete"
                 size="sm"
                 class="q-ml-sm"
-                flat
-                round
                 dense
+                round
                 @click="dialog = true"
               />
               <q-dialog v-model="dialog" persistent>
