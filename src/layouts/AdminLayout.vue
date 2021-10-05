@@ -19,9 +19,9 @@
 
 
 
-            <q-item clickable v-ripple  >
+            <q-item clickable v-ripple to="ManageStudentPage"  >
               <q-item-section avatar>
-                <q-icon name="inbox" to="Login" />
+                <q-icon name="inbox"  />
               </q-item-section>
 
               <q-item-section>
@@ -29,7 +29,7 @@
               </q-item-section>
             </q-item>
 
-            <q-item active clickable v-ripple>
+            <q-item active clickable v-ripple >
               <q-item-section avatar>
                 <q-icon name="star" />
               </q-item-section>
@@ -39,7 +39,7 @@
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-ripple>
+            <q-item clickable v-ripple to="ManageAccountPage">
               <q-item-section avatar>
                 <q-icon name="send" />
               </q-item-section>
@@ -73,9 +73,9 @@
       </q-drawer>
 
       <q-page-container>
-        <q-page padding>
 
-        </q-page>
+
+        <router-view></router-view>
       </q-page-container>
     </q-layout>
 

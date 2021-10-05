@@ -68,7 +68,7 @@
               </q-input>
 
               <div>
-                <q-btn class="text-bold text-subtitle1 full-width" color="white" text-color="pink-10" label="L o g i n" />
+                <q-btn class="text-bold text-subtitle1 full-width" color="white" text-color="pink-10" label="L o g i n" to="ManageStudentPage" />
               </div>
             </q-form>
           </q-card-section>
