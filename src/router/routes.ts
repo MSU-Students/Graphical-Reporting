@@ -7,7 +7,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       { path: '', component: () => import('pages/landingpage.vue') },
       { path: '/landingpage', component: () => import('pages/landingpage.vue') },
-      { path: '/Homepage', component: () => import('pages/Homepage.vue') },
+
 
 
 
@@ -20,7 +20,20 @@ const routes: RouteRecordRaw[] = [
     children: [
 
       { path: '/ManageAccountPage', component: () => import('pages/ManageAccountPage.vue') },
+      { path: '/ViewAccount', component: () => import('pages/ViewAccount.vue') },
+      { path: '/ViewStudentPage', component: () => import('pages/ViewStudentPage.vue') },
+      { path: '/SearchAdminPage', component: () => import('pages/SearchAdminPage.vue') },
+
+    ],
+  },
+
+  {
+    path: '/',
+    component: () => import('layouts/ChairPersonLayout.vue'),
+    children: [
+
       { path: '/ManageStudentPage', component: () => import('pages/ManageStudentPage.vue') },
+      { path: '/ViewStudentChairPage', component: () => import('pages/ViewStudentChairPage.vue') },
 
     ],
   },

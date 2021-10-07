@@ -8,7 +8,7 @@
     <br />
 
     <q-table
-      title="Account List"
+      title="Student List"
       :rows="rows"
       :columns="columns"
       row-key="name"
@@ -47,7 +47,7 @@
               <q-btn
                 color="pink-10"
                 dense
-                round
+               flat
                 size="sm"
                 icon="add"
 
@@ -205,7 +205,7 @@
                 size="sm"
                 class="q-ml-sm"
                 dense
-                round
+                flat
                 @click="editRow = true"
               />
               <q-dialog v-model="editRow" persistent>
@@ -359,7 +359,7 @@
                 size="sm"
                 class="q-ml-sm"
                 dense
-                round
+                flat
                 @click="dialog = true"
               />
               <q-dialog v-model="dialog" persistent>

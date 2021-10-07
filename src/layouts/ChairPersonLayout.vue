@@ -19,27 +19,17 @@
 
 
 
-            <q-item clickable v-ripple to="ManageAccountPage"  >
+            <q-item clickable v-ripple to="ManageStudentPage"  >
               <q-item-section avatar>
                 <q-icon name="settings"  />
               </q-item-section>
 
               <q-item-section>
-                Manage Account
+                Manage Student
               </q-item-section>
             </q-item>
 
-            <q-item active clickable v-ripple to="ViewAccount" >
-              <q-item-section avatar>
-                <q-icon name="inbox" />
-              </q-item-section>
-
-              <q-item-section>
-                View Account
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable v-ripple to="ViewStudentPage" >
+            <q-item active clickable v-ripple to="ViewStudentChairPage" >
               <q-item-section avatar>
                 <q-icon name="inbox" />
               </q-item-section>
@@ -49,7 +39,17 @@
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-ripple to="SearchAdminPage">
+            <q-item clickable v-ripple >
+              <q-item-section avatar>
+                <q-icon name="inbox" />
+              </q-item-section>
+
+              <q-item-section>
+                View Student
+              </q-item-section>
+            </q-item>
+
+            <q-item clickable v-ripple>
               <q-item-section avatar>
                 <q-icon name="search" />
               </q-item-section>
@@ -72,10 +72,10 @@
           </q-list>
         </q-scroll-area>
 
-        <q-img class="absolute-top " src="../assets/image/annie.jpg" style="height: 180px">
+        <q-img class="absolute-top " src="../assets/image/suna.jpg" style="height: 180px">
           <div class="absolute-bottom bg-transparent">
-            <q-avatar size="56px" class="q-mb-l">
-              <img src="../assets/image/annie.jpg">
+            <q-avatar size="56px" class="q-lb-sm">
+              <img src="../assets/image/suna.jpg">
             </q-avatar>
             <div class="text-weight-bold">User Account</div>
             <div>@rstoenescu</div>
