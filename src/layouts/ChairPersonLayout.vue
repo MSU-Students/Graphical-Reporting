@@ -39,17 +39,7 @@
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-ripple >
-              <q-item-section avatar>
-                <q-icon name="inbox" />
-              </q-item-section>
-
-              <q-item-section>
-                View Student
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable v-ripple>
+            <q-item clickable v-ripple to="SearchChairPage">
               <q-item-section avatar>
                 <q-icon name="search" />
               </q-item-section>

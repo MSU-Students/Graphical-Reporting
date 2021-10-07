@@ -34,6 +34,7 @@ const routes: RouteRecordRaw[] = [
 
       { path: '/ManageStudentPage', component: () => import('pages/ManageStudentPage.vue') },
       { path: '/ViewStudentChairPage', component: () => import('pages/ViewStudentChairPage.vue') },
+      { path: '/SearchChairPage', component: () => import('pages/SearchChairPage.vue') },
 
     ],
   },
