@@ -94,7 +94,10 @@
                     />
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="Birthday" label="Birthday" />
+                    <q-input outlined
+              v-model="date"
+              type="date"
+              label="Date of Birth" />
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <q-input outlined v-model="Birthplace" label="Birthplace" />

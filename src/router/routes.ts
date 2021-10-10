@@ -23,7 +23,7 @@ const routes: RouteRecordRaw[] = [
       { path: '/ViewAccount', component: () => import('pages/ViewAccount.vue') },
       { path: '/ViewStudentPage', component: () => import('pages/ViewStudentPage.vue') },
       { path: '/SearchAdminPage', component: () => import('pages/SearchAdminPage.vue') },
-
+      { path: '/SummaryAdmin', component: () => import('pages/SummaryAdmin.vue') },
     ],
   },
 
@@ -35,6 +35,9 @@ const routes: RouteRecordRaw[] = [
       { path: '/ManageStudentPage', component: () => import('pages/ManageStudentPage.vue') },
       { path: '/ViewStudentChairPage', component: () => import('pages/ViewStudentChairPage.vue') },
       { path: '/SearchChairPage', component: () => import('pages/SearchChairPage.vue') },
+      { path: '/ManageAcc', component: () => import('pages/ManageAcc.vue') },
+      { path: '/Homepage', component: () => import('pages/Homepage.vue') },
+      { path: '/trypage', component: () => import('pages/trypage.vue') },
 
     ],
   },

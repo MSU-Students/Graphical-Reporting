@@ -59,6 +59,14 @@
               </q-item-section>
             </q-item>
 
+              <q-item clickable v-ripple to="SummaryAdmin">
+            <q-item-section avatar>
+              <q-icon name="people" />
+            </q-item-section>
+
+            <q-item-section> Summary </q-item-section>
+          </q-item>
+
              <q-item clickable v-ripple to="landingpage">
               <q-item-section avatar>
                 <q-icon name="logout" />
@@ -77,7 +85,7 @@
             <q-avatar size="56px" class="q-mb-l">
               <img src="../assets/image/annie.jpg">
             </q-avatar>
-            <div class="text-weight-bold">User Account</div>
+            <div class="text-weight-bold">Admin Account</div>
             <div>@rstoenescu</div>
           </div>
         </q-img>
