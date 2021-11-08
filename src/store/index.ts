@@ -6,8 +6,20 @@ import {
   useStore as vuexUseStore,
 } from 'vuex'
 
-// import example from './module-example'
-// import { ExampleStateInterface } from './module-example/state';
+import student from './student'
+import { StudentStateInterface } from './student/state';
+
+import auth from './auth';
+import { AuthStateInterface } from './auth/state';
+
+import admin from './admin';
+import { AdminStateInterface } from './admin/state';
+
+import table from './table';
+import { TableStateInterface } from './table/state';
+
+import search from './search';
+import { SearchStateInterface} from './search/state';
 
 /*
  * If not building with SSR mode, you can
@@ -22,7 +34,12 @@ export interface StateInterface {
   // Define your own store structure, using submodules if needed
   // example: ExampleStateInterface;
   // Declared as unknown to avoid linting issue. Best to strongly type as per the line above.
-  example: unknown
+  student: StudentStateInterface,
+  auth: AuthStateInterface,
+  admin: AdminStateInterface,
+  table: TableStateInterface,
+  search: SearchStateInterface,
+
 }
 
 // provide typings for `this.$store`
@@ -39,6 +56,11 @@ export default store(function (/* { ssrContext } */) {
   const Store = createStore<StateInterface>({
     modules: {
       // example
+      student,
+      auth,
+      admin,
+      table,
+      search
     },
 
     // enable strict mode (adds overhead!)

@@ -75,12 +75,7 @@ export default class ManageAccount extends Vue {
     { name: 'role', align: 'center', label: 'Role', field: 'role' },
     { name: 'status', align: 'center', label: 'Status', field: 'status' },
      { name: 'Password', align: 'center', label: 'Password', field: 'Password' },
-    {
-      name: 'lastLogin',
-      align: 'center',
-      label: 'Last Login',
-      field: 'lastLogin',
-    },
+
   ];
  rows = [
     {
@@ -89,7 +84,6 @@ export default class ManageAccount extends Vue {
       dateCreated: 'December 01, 1999',
       role: 'Admin',
       status: 'Active',
-      lastLogin: '05 / 10 / 2021',
       Password: 'p@ssw0rd',
     },
     {
@@ -98,7 +92,6 @@ export default class ManageAccount extends Vue {
       dateCreated: 'July 05, 1999',
       role: 'Admin',
       status: 'Active',
-      lastLogin: '02 / 10 / 2021',
       Password: 'p@ssw0rd',
     },
     {
@@ -107,7 +100,6 @@ export default class ManageAccount extends Vue {
       dateCreated: 'May 08, 1998',
       role: 'Admin',
       status: 'Active',
-      lastLogin: '03 / 09 / 2021',
       Password: 'p@ssw0rd',
     },
   ];

@@ -2,12 +2,12 @@ import { RouteRecordRaw } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/',
+    path: '',
     component: () => import('layouts/loginland.vue'),
     children: [
-      { path: '', component: () => import('pages/landingpage.vue') },
-      { path: '/landingpage', component: () => import('pages/landingpage.vue') },
 
+      { path: '', component: () => import('pages/landingpage.vue') },
+      { path: 'landingpage', component: () => import('pages/landingpage.vue') }
 
 
 
@@ -24,6 +24,8 @@ const routes: RouteRecordRaw[] = [
       { path: '/ViewStudentPage', component: () => import('pages/ViewStudentPage.vue') },
       { path: '/SearchAdminPage', component: () => import('pages/SearchAdminPage.vue') },
       { path: '/SummaryAdmin', component: () => import('pages/SummaryAdmin.vue') },
+      { path: '/chartPage', component: () => import('pages/chartPage.vue') }
+
     ],
   },
 
@@ -41,6 +43,8 @@ const routes: RouteRecordRaw[] = [
 
     ],
   },
+
+
 
 
 

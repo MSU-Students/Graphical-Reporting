@@ -26,9 +26,9 @@
               <q-icon  name="search" color="pink-10" />
             </template>
             </q-input>
-
-        </div>
+          </div>
     </template>
+
        <template v-slot:item="props">
           <div
             class="
@@ -45,7 +45,7 @@
                 </div>
                 <div class="q-gutter-x-xs">
                   <q-btn
-                color="primary"
+                color="pink-10"
                     icon="edit"
                     flat
                     round
@@ -118,26 +118,24 @@
                   </q-card-actions>
                 </q-card>
               </q-dialog>
-</div>
+            </div>
               </q-card-actions>
 
-              <q-separator />
-              <q-list dense>
-                <q-item
-                  v-for="col in props.cols.filter((col) => col.name !== 'desc')"
-                  :key="col.name"
-                >
-                  <q-item-section>
-                    <q-item-label>{{ col.label }}</q-item-label>
-                  </q-item-section>
-                  <q-item-section side>
-                    <q-item-label caption>{{ col.value }}</q-item-label>
-                  </q-item-section>
-                </q-item>
-              </q-list>
-            </q-card>
-          </div>
-        </template>
+               <q-separator />
+            <q-list dense>
+              <q-item v-for="col in props.cols.filter(col => col.name !== 'desc')" :key="col.name">
+                <q-item-section>
+                  <q-item-label>{{col.label }}</q-item-label>
+                </q-item-section>
+                <q-item-section side>
+                  <q-item-label caption>{{col.value }}</q-item-label>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-card>
+        </div>
+      </template>
+
     </q-table>
   </div>
 </template>
@@ -230,5 +228,8 @@ export default class ManageAccount extends Vue {
   }
 }
 </script>
-<style lang="sass"></style>
+<style lang="sass">
+.grid-style-transition
+  transition: transform .28s, background-color .28s
+</style>
 

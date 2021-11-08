@@ -1,21 +1,17 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
+    <chart/>
   </q-page>
 </template>
 
 <script lang="ts">
 import { Todo, Meta } from 'components/models';
-import ExampleComponent from 'components/ClassComponent.vue';
+import Chart from 'components/Charts/GeneralEnroll.vue';
+
 import { Vue, Options } from 'vue-class-component'
 
 @Options({
-  components: { ExampleComponent }
+  components: { Chart }
 })
 export default class PageIndex extends Vue {
   todos: Todo[] = [

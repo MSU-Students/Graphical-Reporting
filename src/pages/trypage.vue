@@ -1,4 +1,5 @@
 <template>
+<q-page class="bg-image">
   <div class="q-pa-md">
     <q-table
       grid
@@ -10,7 +11,7 @@
       hide-header
       :rows-per-page-options="[0]"
     >
-      <template v-slot:top-right>
+      <template v-slot:top-left>
         <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
           <template v-slot:append>
             <q-icon name="search" />
@@ -34,6 +35,7 @@
       </template>
     </q-table>
   </div>
+</q-page>
 </template>
 
 <script lang="ts">

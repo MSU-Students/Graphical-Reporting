@@ -1,15 +1,18 @@
 <template>
-  <div class="q-pa-md">
+
+   <div class="q-pa-md">
     <div class="text-h4 text-bold text-pink-10">
-      <q-icon name="account_circle" color="pink-10" style="font-size: 4rem" />
+      <q-icon name="inbox" color="pink-10" style="font-size: 4rem" />
       Manage Student
     </div>
+
 
     <br />
 
     <q-table
+      class="my-sticky-column-table"
       title="Student List"
-      :rows="rows"
+      :rows="students"
       :columns="columns"
       row-key="name"
       :rows-per-page-options="[0]"
@@ -17,6 +20,14 @@
     >
       <template v-slot:top-right>
         <div class="q-pa-md q-gutter-sm row">
+          <q-btn
+            label="Add User"
+            color="pink-10"
+            dense
+            flat
+            icon="add"
+            @click="onNewStudent()"
+          />
           <q-input
             outlined
             rounded
@@ -26,393 +37,273 @@
             placeholder="Search"
           >
             <template v-slot:append>
-              <q-icon name="search" color="pink-10" />
+              <q-icon name="search" />
             </template>
           </q-input>
+
         </div>
       </template>
-      <template v-slot:header="props">
-        <q-tr :props="props">
-          <q-th auto-width />
-          <q-th v-for="col in props.cols" :key="col.name" :props="props">
-            {{ col.label }}
-          </q-th>
-        </q-tr>
-      </template>
 
-      <template v-slot:body="props">
-        <q-tr :props="props">
-          <div>
-            <q-td>
-              <q-btn
-                color="pink-10"
-                dense
-               flat
-                size="sm"
-                icon="add"
+      <template v-slot:body-cell-action="props">
+        <q-td :props="props">
+          <div class="q-gutter-sm">
 
-                @click="addUser = true"
-              />
-              <q-dialog v-model="addUser"  >
-                <q-card style="width: 700px">
-                 <q-toolbar>
-            <q-avatar>
-              <q-icon name="book_online" size="sm" />
-            </q-avatar>
+            <q-btn
 
-            <q-toolbar-title
-              ><span class="text-weight-bold">Add</span>
-              Appointment</q-toolbar-title
-            >
+              color="pink-10"
+              icon="edit"
+              size="sm"
+              flat
+              dense
+              @click="onEditStudent(props.row)"
+            />
 
-            <q-btn flat round dense icon="close" v-close-popup />
-          </q-toolbar>
+            <q-btn
+              color="red-10"
+              icon="delete"
+              size="sm"
+              class="q-ml-sm"
+              flat
+              dense
+              @click="onDeleteStudent(props.row)"
+            />
+            <q-dialog v-model="activeUser" persistent>
+              <q-card style="width: 1500px; max-width: 100vw" class="q-pa-sm">
+                <q-card-section class="row">
+                  <div class="text-h6" v-if="editRow"> <q-icon name="edit" color="pink-10" style="font-size: 4rem" /> Edit User</div>
+                  <div class="text-h6" v-else> <q-icon name="add" color="pink-10" style="font-size: 4rem" /> New User </div>
+                  <q-space />
+                  <q-btn flat dense icon="close" v-close-popup />
+                </q-card-section>
 
-                  <q-card-section class="q-gutter-md">
+                <q-card-section class="q-gutter-md row">
+                  <div class="col">
+                    <q-input
+                            outlined
+                            v-model="presentStudent.fname"
+                            label="First Name"
+                          />
+                          </div>
+                  <div class="col">
+                    <q-input
+                            outlined
+                            v-model="presentStudent.mname"
+                            label="Middle Initial"
+                          />
+                  </div>
+                  <div class="col">
+                    <q-input outlined v-model="presentStudent.lname" label="Last Name" />
+                  </div>
 
-                    <div class="row q-col-gutter-sm q-ma-xs q-mr-sm">
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="fname" label="First Name" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="lname" label="Middle Initial" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="mname" label="Last Name" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="Religion" label="Religion" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="Tribe" label="Tribe" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                </q-card-section>
+                <q-card-section class="q-gutter-md row">
+                  <div class="col">
                     <q-input
-                      outlined
-                      v-model="Nationality"
-                      label="Nationality"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined
-              v-model="date"
-              type="date"
-              label="Date of Birth" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="Birthplace" label="Birthplace" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="Father" label="Father" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="Mother" label="Mother" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="IDnumder" label="IDnumder" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="Degree" label="Degree" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="YearLevel" label="YearLevel" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            outlined
+                            v-model="presentStudent.religion"
+                            label="Religion"
+                          />
+                  </div>
+                  <div class="col">
+                    <q-input outlined v-model="presentStudent.tribe"
+                    label="Tribe" />
+                  </div>
+                   <div class="col">
                     <q-input
-                      outlined
-                      v-model="AcademicAdviser"
-                      label="AcademicAdviser"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            outlined
+                            v-model="presentStudent.nationality"
+                            label="Nationality"
+                          />
+                  </div>
+                  <div class="col">
                     <q-input
-                      outlined
-                      v-model="Scholarship"
-                      label="Scholarship"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            outlined
+                            v-model="presentStudent.birthday"
+                            type="date"
+                            label="Date of Birth"
+                          />
+                  </div>
+                </q-card-section>
+
+                <q-card-section class="q-gutter-md row">
+                  <div class="col">
                     <q-input
-                      outlined
-                      v-model="AcademicStatus"
-                      label="AcademicStatus"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="Admitted" label="Admitted" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            outlined
+                            v-model="presentStudent.birthplace"
+                            label="Birthplace"
+                          />
+                  </div>
+                  <div class="col">
+                    <q-input outlined v-model="presentStudent.father" label="Father" />
+                  </div>
+                  <div class="col">
+                    <q-input outlined v-model="presentStudent.mother" label="Mother" />
+                  </div>
+                  <div class="col">
                     <q-input
-                      outlined
-                      v-model="HomeAddress"
-                      label="HomeAddress"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            outlined
+                            v-model="presentStudent.idNumber"
+                            label="IDnumder"
+                          />
+                  </div>
+                </q-card-section>
+
+               <q-card-section class="q-gutter-md row">
+                  <div class="col">
+                    <q-input outlined v-model="presentStudent.degree" label="Degree" />
+                  </div>
+                  <div class="col">
                     <q-input
-                      outlined
-                      v-model="CampusAddress"
-                      label="CampusAddress"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            outlined
+                            v-model="presentStudent.yearLevel"
+                            label="yearLevel"
+                          />
+                  </div>
+                  <div class="col">
                     <q-input
-                      outlined
-                      v-model="MobileNumber"
-                      label="MobileNumber"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            outlined
+                            v-model="presentStudent.academicAdviser"
+                            label="Academic Adviser"
+                          />
+                  </div>
+                  <div class="col">
                     <q-input
-                      outlined
-                      v-model="EmailAddress"
-                      label="EmailAddress"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            outlined
+                            v-model="presentStudent.scholarship"
+                            label="Scholarship"
+                          />
+                  </div>
+                </q-card-section>
+
+                <q-card-section class="q-gutter-md row">
+                  <div class="col">
                     <q-input
-                      outlined
-                      v-model="FamilyAnnualIncome"
-                      label="FamilyAnnualIncome"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            outlined
+                            v-model="presentStudent.academicStatus"
+                            label="Academic Status"
+                          />
+                  </div>
+                  <div class="col">
                     <q-input
-                      outlined
-                      v-model="email"
-                      label="Email"
-                      type="email"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            outlined
+                            v-model="presentStudent.admitted"
+                            label="Admitted"
+                          />
+                  </div>
+                  <div class="col">
+                    <q-input
+                            outlined
+                            v-model="presentStudent.homeAddress"
+                            label="Home Address"
+                          />
+                  </div>
+                  <div class="col">
+                    <q-input
+                            outlined
+                            v-model="presentStudent.campusAddress"
+                            label="Campus Address"
+                          />
+                  </div>
+                </q-card-section>
+
+                <q-card-section class="q-gutter-md row">
+                  <div class="col">
+                    <q-input
+                            outlined
+                            v-model="presentStudent.mobileNumber"
+                            label="Mobile Number"
+                          />
+                  </div>
+                  <div class="col">
+                    <q-input
+                            outlined
+                            v-model="presentStudent.email"
+                            label="Email Address"
+                          />
+                  </div>
+                  <div class="col">
+                    <q-input
+                            outlined
+                            v-model="presentStudent.familyAnnualIncome"
+                            label="familyAnnualIncome"
+                          />
+                  </div>
+                  <div class="col">
                     <q-select
-                      outlined
-                      v-model="Gender"
-                      :options="options"
-                      label="Gender"
-                    />
-                    </div>
-                    </div>
-                  </q-card-section>
+                            outlined
+                            v-model="presentStudent.gender"
+                            :options="options"
+                            label="gender"
+                          />
+                  </div>
+                </q-card-section>
 
-                  <q-card-actions align="right">
-                    <q-btn flat label="Cancel" color="red-10" v-close-popup />
-                    <q-btn flat label="Save" color="primary" v-close-popup />
-                  </q-card-actions>
-                </q-card>
-              </q-dialog>
-              <q-btn
-
-                color="green-10"
-                icon="edit"
-                size="sm"
-                class="q-ml-sm"
-                dense
-                flat
-                @click="editRow = true"
-              />
-              <q-dialog v-model="editRow" persistent>
-                <q-card style="width: 700px">
-                 <q-toolbar>
-            <q-avatar>
-              <q-icon name="book_online" size="sm" />
-            </q-avatar>
-
-            <q-toolbar-title
-              ><span class="text-weight-bold">Edit</span>
-              Appointment</q-toolbar-title
-            >
-
-            <q-btn flat round dense icon="close" v-close-popup />
-          </q-toolbar>
-
-                  <q-card-section class="q-gutter-md">
-
-                    <div class="row q-col-gutter-sm q-ma-xs q-mr-sm">
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="fname" label="First Name" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="lname" label="Middle Initial" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="mname" label="Last Name" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="Religion" label="Religion" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="Tribe" label="Tribe" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input
-                      outlined
-                      v-model="Nationality"
-                      label="Nationality"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="Birthday" label="Birthday" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="Birthplace" label="Birthplace" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="Father" label="Father" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="Mother" label="Mother" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="IDnumder" label="IDnumder" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="Degree" label="Degree" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="YearLevel" label="YearLevel" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input
-                      outlined
-                      v-model="AcademicAdviser"
-                      label="AcademicAdviser"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input
-                      outlined
-                      v-model="Scholarship"
-                      label="Scholarship"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input
-                      outlined
-                      v-model="AcademicStatus"
-                      label="AcademicStatus"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input outlined v-model="Admitted" label="Admitted" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input
-                      outlined
-                      v-model="HomeAddress"
-                      label="HomeAddress"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input
-                      outlined
-                      v-model="CampusAddress"
-                      label="CampusAddress"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input
-                      outlined
-                      v-model="MobileNumber"
-                      label="MobileNumber"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input
-                      outlined
-                      v-model="EmailAddress"
-                      label="EmailAddress"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input
-                      outlined
-                      v-model="FamilyAnnualIncome"
-                      label="FamilyAnnualIncome"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-input
-                      outlined
-                      v-model="email"
-                      label="Email"
-                      type="email"
-                    />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <q-select
-                      outlined
-                      v-model="Gender"
-                      :options="options"
-                      label="Gender"
-                    />
-                    </div>
-                    </div>
-                  </q-card-section>
-
-                  <q-card-actions align="right">
-                    <q-btn flat label="Cancel" color="red-10" v-close-popup />
-                    <q-btn flat label="Save" color="primary" v-close-popup />
-                  </q-card-actions>
-                </q-card>
-              </q-dialog>
-              <q-btn
-                color="red-10"
-                icon="delete"
-                size="sm"
-                class="q-ml-sm"
-                dense
-                flat
-                @click="dialog = true"
-              />
-              <q-dialog v-model="dialog" persistent>
-                <q-card style="width: 300px">
-                  <q-card-section class="row items-center">
-                    <q-avatar
-                      size="sm"
-                      icon="warning"
-                      color="red-10"
-                      text-color="white"
-                    />
-                    <span class="q-ml-sm">Confirm Delete?</span>
-                  </q-card-section>
-                  <q-card-actions align="right">
-                    <q-btn
-                      flat
-                      label="Cancel"
-                      color="primary"
-                      v-close-popup="cancelEnabled"
-                      :disable="!cancelEnabled"
-                    />
-                    <q-btn flat label="Confirm" color="primary" v-close-popup />
-                  </q-card-actions>
-                </q-card>
-              </q-dialog>
-            </q-td>
+              <q-card-actions align="right">
+                  <q-btn flat label="Cancel" color="red-10" v-close-popup />
+                  <q-btn flat label="Save" color="primary" @click="onSaveStudent" v-close-popup />
+                </q-card-actions>
+              </q-card>
+            </q-dialog>
+            <q-dialog v-model="confirmDelete" persistent>
+              <q-card style="width: 300px">
+                <q-card-section class="row items-center">
+                  <q-avatar
+                    size="sm"
+                    icon="warning"
+                    color="red-10"
+                    text-color="white"
+                    style="font-size: 4rem"
+                  />
+                  <span class="q-ml-sm">Confirm Delete {{presentStudent.fname}}?</span>
+                </q-card-section>
+                <q-card-actions align="right">
+                  <q-btn
+                    flat
+                    label="Cancel"
+                    color="primary"
+                    v-close-popup="cancelEnabled"
+                    :disable="!cancelEnabled"
+                  />
+                  <q-btn flat label="Confirm" @click="onCofirmDelete" color="primary" v-close-popup />
+                </q-card-actions>
+              </q-card>
+            </q-dialog>
           </div>
-
-          <q-td v-for="col in props.cols" :key="col.name" :props="props">
-            {{ col.value }}
-          </q-td>
-        </q-tr>
+        </q-td>
       </template>
     </q-table>
   </div>
+
 </template>
 <script lang="ts">
+import { IStudentInfo } from 'src/store/student/state';
 import { Vue, Options } from 'vue-class-component';
-interface IRow {
-  name: string;
-}
-@Options({})
+import { mapActions, mapState } from 'vuex';
+
+
+@Options({
+  computed: {
+    ...mapState('student', ['students', 'activeStudent'])
+  },
+  methods: {
+    ...mapActions('student', ['newStudent', 'editStudent', 'deleteStudent'])
+  }
+})
 export default class ManageAccount extends Vue {
-  columns = [
+
+  //vuex properties
+  students!:IStudentInfo[];
+  newStudent!:(student:IStudentInfo) => Promise<void>;
+  editStudent!:(student:IStudentInfo) => Promise<void>;
+  deleteStudent!:(student:IStudentInfo) => Promise<void>;
+  //local
+   columns = [
     {
       name: 'name',
       required: true,
       label: 'Name',
       align: 'left',
-      field: (row: IRow) => row.name,
+      field: (row: IStudentInfo) => row.fname +' '+ row.lname +' '+ row.mname,
       format: (val: string) => `${val}`,
     },
     {
@@ -427,169 +318,177 @@ export default class ManageAccount extends Vue {
       label: 'Tribe',
       field: 'tribe',
     },
-    { name: 'nationality', align: 'center', label: 'Nationality', field: 'nationality' },
+    {
+      name: 'nationality',
+      align: 'center',
+      label: 'Nationality',
+      field: 'nationality',
+    },
     { name: 'birthday', align: 'center', label: 'Birthday', field: 'birthday' },
-    { name: 'birthplace', align: 'center', label: 'Birthplace', field: 'birthplace' },
+    {
+      name: 'birthplace',
+      align: 'center',
+      label: 'Birthplace',
+      field: 'birthplace',
+    },
     {
       name: 'father',
       align: 'center',
       label: 'Father',
       field: 'father',
     },
-     {
+    {
       name: 'mother',
       align: 'center',
       label: 'Mother',
       field: 'mother',
     },
-     {
+    {
       name: 'degree',
       align: 'center',
       label: 'Degree',
       field: 'degree',
     },
-     {
-      name: ' yearlevel',
+    {
+      name: ' yearLevel',
       align: 'center',
       label: 'Year Level',
-      field: 'yearlevel',
+      field: 'yearLevel',
     },
-     {
-      name: 'academicadviser',
+    {
+      name: 'academicAdviser',
       align: 'center',
       label: 'Academic Adviser',
-      field: 'academicadviser',
+      field: 'academicAdviser',
     },
-     {
+    {
       name: 'scholarship',
       align: 'center',
       label: 'Scholarship',
       field: 'scholarship',
     },
-     {
-      name: 'academicstatus',
+    {
+      name: 'academicStatus',
       align: 'center',
       label: 'Academic Status',
-      field: 'academicstatus',
+      field: 'academicStatus',
     },
-     {
+    {
       name: 'admitted',
       align: 'center',
       label: 'Admitted',
       field: 'admitted',
     },
-     {
-      name: 'homeaddress',
+    {
+      name: 'homeAddress',
       align: 'center',
       label: 'Home Address',
-      field: 'homeaddress',
+      field: 'homeAddress',
     },
-     {
-      name: 'campusaddress',
+    {
+      name: 'campusAddress',
       align: 'center',
       label: 'Campus Address',
-      field: 'campusaddress',
+      field: 'campusAddress',
     },
-     {
-      name: 'mobilenumber',
+    {
+      name: 'mobileNumber',
       align: 'center',
       label: 'Mobile Number',
-      field: 'mobilenumber',
+      field: 'mobileNumber',
     },
-     {
-       name: 'email',
+    {
+      name: 'email',
       align: 'center',
       label: 'Email',
       field: 'email',
     },
-     {
-      name: 'familyannualincome',
+    {
+      name: 'familyAnnualIncome',
       align: 'center',
       label: 'Family Annual Income',
-      field: 'familyannualincome',
+      field: 'familyAnnualIncome',
     },
-   ];
-  rows = [
-    {
-      name: 'kim soo hyun',
-      religion: 'Islam',
-      tribe: 'Mranao',
-     nationality:'Filipino',
-  birthday: 'April 11, 1999',
-  birthplace: 'Marawi City',
-  father: 'Mohammad Sani',
-  mother: 'Noraida Indad',
-  degree: 'BS Information System',
-  yearlevel: '3rd year',
-  academicadviser: 'MAMA, Jasmin',
-  scholarship: 'NONE',
-  academicstatus: 'Paying',
-  admitted: '1st semester',
-  homeaddress: 'saguiaran, LDS',
-  campusaddress: 'MSU Campus, Marawi City',
-  mobilenumber:'09876543111',
-  familyannualincome: '00.00',
-  email:'kimyohan03@gmail.com',
-  Gender: 'Female',
-    },
-     {
-      name: 'kim so hyun',
-      religion: 'Islam',
-      tribe: 'Mranao',
-     nationality:'Filipino',
-  birthday: 'April 11, 1999',
-  birthplace: 'Marawi City',
-  father: 'Mohammad Sani',
-  mother: 'Noraida Indad',
-  degree: 'BS Information System',
-  yearlevel: '3rd year',
-  academicadviser: 'MAMA, Jasmin',
-  scholarship: 'NONE',
-  academicstatus: 'Paying',
-  admitted: '1st semester',
-  homeaddress: 'saguiaran, LDS',
-  campusaddress: 'MSU Campus, Marawi City',
-  mobilenumber:'09876543111',
-  familyannualincome: '00.00',
-  email:'kimyohan03@gmail.com',
-  Gender: 'Female',
-    }
-
+    { name: 'action', align: 'center', label: 'Action', field: 'action' },
   ];
-  dialog = false;
+  confirmDelete = false;
   cancelEnabled = true;
-  addUser = false;
+  activeUser = false;
   editRow = false;
-  fname = '';
-  lname = '';
-  mname = '';
-  Religion = '';
-  Tribe = '';
-  Nationality = '';
-  Birthday = '';
-  Birthplace = '';
-  Father = '';
-  Mother = '';
-  IDnumder = '';
-  Degree = '';
-  YearLevel = '';
-  AcademicAdviser = '';
-  Scholarship = '';
-  AcademicStatus = '';
-  Admitted = '';
-  HomeAddress = '';
-  CampusAddress = '';
-  MobileNumber = '';
-  EmailAddress = '';
-  FamilyAnnualIncome = '';
-  email = '';
-  Gender = '';
+  defaultStudent: IStudentInfo = {
+    idNumber: '',
+     fname: '',
+    mname: '',
+    lname: '',
+    religion: 'Islam',
+    tribe: 'Meranao',
+    nationality: 'Filipino',
+    birthday: '',
+    birthplace: '',
+    father: '',
+    mother: '',
+    degree: 'BS Information System',
+    yearLevel: '',
+    academicAdviser: 'MAMA, Jasmin',
+    scholarship: 'NONE',
+    academicStatus: 'Paying',
+    admitted: '1st semester',
+    homeAddress: '',
+    campusAddress: '',
+    mobileNumber: '',
+    familyAnnualIncome: '00.00',
+    email: '',
+    gender: 'Female',
+  }
+  presentStudent = {...this.defaultStudent};
   filter = '';
-  options = ['Admin', 'Cashier'];
-  option = ['Inactive', 'Active'];
+  options = ['Male', 'Female'];
 
-  onItemClick() {
-    console.log('Clicked!');
+  onNewStudent() {
+    this.presentStudent =  {...this.defaultStudent};
+    this.editRow = false;
+    this.activeUser = true;
+  }
+
+  onEditStudent(student:IStudentInfo) {
+    this.presentStudent = {...student};
+    this.editRow = true;
+    this.activeUser = true;
+  }
+  onDeleteStudent(student:IStudentInfo) {
+    this.presentStudent = {...student};
+    this.confirmDelete = true;
+  }
+
+  async onSaveStudent() {
+    if (!this.editRow) {
+      await this.newStudent(this.presentStudent);
+    } else {
+      await this.editStudent(this.presentStudent);
+    }
+  }
+  async onCofirmDelete() {
+    await this.deleteStudent(this.presentStudent);
+    this.confirmDelete = false;
   }
 }
 </script>
+<style lang="sass">
+.my-sticky-column-table
+  /* specifying max-width so the example can
+    highlight the sticky column on any browser window */
+
+
+  thead tr:first-child th:first-child
+    /* bg color is important for th; just specify one */
+    background-color: #fff
+
+  td:first-child
+    background-color: #f5f5dc
+
+  th:first-child,
+  td:first-child
+    position: sticky
+    left: 0
+    z-index: 1
+</style>

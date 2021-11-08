@@ -1,262 +1,281 @@
 <template>
-  <q-page class="bg-image">
-    <div class="q-pa-xl">
-      <q-card class="bg-secondary">
-        <q-card-section class="text-black">
-          <div class="text-h7 text-bold">MSU Office of the Chancellor</div>
-          <div class="text-h6 text-white">
-            <q-icon name="arrow_upward" />
-            ONGOING SCHEDULES
-          </div>
-        </q-card-section>
-      </q-card>
-      <q-btn
-        color="black"
-        text-color="white"
-        label="Add Appointment"
-        icon-right="add"
-        @click="prompt = true"
+  <div class="q-pa-md">
+    <div class="text-h4 text-bold">
+      <q-icon
+        name="account_circle"
+        color="light-blue-6"
+        style="font-size: 4rem"
       />
+      Account Management
     </div>
 
-    <div>
-      <q-dialog v-model="prompt" persistent>
-        <q-card style="width: 500px">
-          <q-toolbar>
-            <q-avatar>
-              <q-icon name="book_online" />
-            </q-avatar>
+    <br />
 
-            <q-toolbar-title
-              ><span class="text-weight-bold">Add</span>
-              Appointment</q-toolbar-title
-            >
-
-            <q-btn flat round dense icon="close" v-close-popup />
-          </q-toolbar>
-
-          <q-card-section class="q-gutter-y-sm">
-            <q-input
-              v-model="participant.name"
-              dense
-              outlined
-              type="text"
-              label="Employee Name"
-            >
-              <template v-slot:prepend>
-                <q-icon name="person" />
-              </template>
-            </q-input>
-            <q-input
-              v-model="participant.appointmentDate"
-              dense
-              outlined
-              label="Appointment Date"
-            />
-            <q-input
-              v-model="participant.timeSlots"
-              dense
-              outlined
-              label="Time Slots"
-            />
-            <q-input
-              v-model="participant.purpose"
-              dense
-              outlined
-              label="Purpose"
-            />
-            <q-input
-              v-model="participant.clientName"
-              dense
-              outlined
-              label="Client Name"
-            />
-            <q-input
-              v-model="participant.phoneNumber"
-              dense
-              outlined
-              label="Phone No."
-            />
-            <q-input
-              v-model="participant.emailAdd"
-              dense
-              outlined
-              label="Email"
-            />
-            <q-input v-model="participant.address"
-            dense
+    <q-table
+      title="Account List"
+      :rows="rows"
+      :columns="columns"
+      row-key="name"
+      :rows-per-page-options="[0]"
+      :filter="filter"
+    >
+      <template v-slot:top-right>
+        <div class="q-pa-md q-gutter-sm row">
+          <q-input
             outlined
-            label="Address" />
-
-          </q-card-section>
-
-          <q-card-actions align="center">
-            <q-btn
-              color="green"
-              label="Add Appointment"
-              @click="addAppointment()"
-            />
-            <q-btn color="red" label="Cancel" @click="prompt = false" />
-          </q-card-actions>
-        </q-card>
-      </q-dialog>
-    </div>
-
-    <div class="q-px-xl absolute-bottom">
-      <q-table
-        :rows="rows"
-        :columns="columns"
-        row-key="name"
-        :rows-per-page-options="[3]"
-        selection="multiple"
-        v-model:selected="selected"
-        :filter="filter"
-        grid
-        hide-header
-      >
-        <div class="q-pb-lg"></div>
-        <template v-slot:item="props">
-          <div
-            class="
-              q-pa-xs
-              col-xs-12 col-sm-4 col-md-4 col-lg-4
-              grid-style-transition
-            "
-            :style="props.selected ? 'transform: scale(0.95);' : ''"
+            rounded
+            dense
+            debounce="300"
+            v-model="filter"
+            placeholder="Search"
           >
-            <q-card :class="props.selected ? 'bg-grey-2' : ''">
-              <q-card-actions align="between">
-                <div>
-                  {{ props.row.name }}
-                </div>
-                <div class="q-gutter-x-xs">
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+
+        </div>
+      </template>
+
+      <template v-slot:body-cell-action="props">
+        <q-td :props="props">
+          <div class="q-gutter-sm">
+            <q-btn
+
+            color="primary"
+            dense
+            flat
+            icon="add"
+            @click="addUser = true"
+            />
+            <q-dialog v-model="addUser" persistent>
+              <q-card style="width: 800px; max-width: 100vw" class="q-pa-sm">
+                <q-card-section class="row">
+                  <div class="text-h6">Add User</div>
+                  <q-space />
+                  <q-btn flat round dense icon="close" v-close-popup />
+                </q-card-section>
+
+                <q-card-section class="q-gutter-md row">
+                  <div class="col">
+                    <q-input outlined v-model="Fname" label="First Name" />
+                  </div>
+                  <div class="col">
+                    <q-input outlined v-model="Mname" label="Middle Name" />
+                  </div>
+                  <div class="col">
+                    <q-input outlined v-model="Lname" label="Last Name" />
+                  </div>
+                </q-card-section>
+                <q-card-section class="q-gutter-md row">
+                  <div class="col">
+                    <q-input outlined v-model="username" label="Username" />
+                  </div>
+                  <div class="col">
+                    <q-input outlined v-model="password" label="Password" />
+                  </div>
+                </q-card-section>
+
+                <q-card-section class="q-gutter-md row">
+                  <div class="col">
+                    <q-input
+                      outlined
+                      v-model="email"
+                      label="Email"
+                      type="email"
+                    />
+                  </div>
+                  <div class="col">
+                    <q-select
+                      outlined
+                      v-model="role"
+                      :options="options"
+                      label="Roles"
+                    />
+                  </div>
+                </q-card-section>
+
+                <q-card-actions align="right">
+                  <q-btn flat label="Cancel" color="red-10" v-close-popup />
+                  <q-btn flat label="Save" color="primary" v-close-popup />
+                </q-card-actions>
+              </q-card>
+            </q-dialog>
+            <q-btn
+              round
+              color="blue"
+              icon="edit"
+              size="sm"
+              flat
+              dense
+              @click="editRow = true"
+            />
+            <q-dialog v-model="editRow" persistent>
+              <q-card style="width: 800px; max-width: 100vw" class="q-pa-sm">
+                <q-card-section class="row">
+                  <div class="text-h6">Edit User</div>
+                  <q-space />
+                  <q-btn flat round dense icon="close" v-close-popup />
+                </q-card-section>
+
+                <q-card-section class="q-gutter-md row">
+                  <div class="col">
+                    <q-input outlined v-model="Fname" label="First Name" />
+                  </div>
+                  <div class="col">
+                    <q-input outlined v-model="Mname" label="Middle Name" />
+                  </div>
+                  <div class="col">
+                    <q-input outlined v-model="Lname" label="Last Name" />
+                  </div>
+                </q-card-section>
+                <q-card-section class="q-gutter-md row">
+                  <div class="col">
+                    <q-input outlined v-model="username" label="Username" />
+                  </div>
+                  <div class="col">
+                    <q-input outlined v-model="password" label="Password" />
+                  </div>
+                </q-card-section>
+
+                <q-card-section class="q-gutter-md row">
+                  <div class="col">
+                    <q-input
+                      outlined
+                      v-model="email"
+                      label="Email"
+                      type="email"
+                    />
+                  </div>
+                  <div class="col">
+                    <q-select
+                      outlined
+                      v-model="role"
+                      :options="options"
+                      label="Roles"
+                    />
+                  </div>
+                </q-card-section>
+
+                <q-card-actions align="right">
+                  <q-btn flat label="Cancel" color="red-10" v-close-popup />
+                  <q-btn flat label="Save" color="primary" v-close-popup />
+                </q-card-actions>
+              </q-card>
+            </q-dialog>
+            <q-btn
+              color="red-10"
+              icon="delete"
+              size="sm"
+              class="q-ml-sm"
+              flat
+              round
+              dense
+              @click="dialog = true"
+            />
+            <q-dialog v-model="dialog" persistent>
+              <q-card style="width: 300px">
+                <q-card-section class="row items-center">
+                  <q-avatar
+                    size="sm"
+                    icon="warning"
+                    color="red-10"
+                    text-color="white"
+                  />
+                  <span class="q-ml-sm">Confirm Delete?</span>
+                </q-card-section>
+                <q-card-actions align="right">
                   <q-btn
+                    flat
+                    label="Cancel"
                     color="primary"
-                    icon="edit"
-                    flat
-                    round
-                    @click="editAppointment()"
+                    v-close-popup="cancelEnabled"
+                    :disable="!cancelEnabled"
                   />
-                  <q-btn
-                    color="red"
-                    icon="delete"
-                    dense
-                    flat
-                    @click="deleteAppointment()"
-                  />
-                </div>
-              </q-card-actions>
-
-              <q-separator />
-              <q-list dense>
-                <q-item
-                  v-for="col in props.cols.filter((col) => col.name !== 'desc')"
-                  :key="col.name"
-                >
-                  <q-item-section>
-                    <q-item-label>{{ col.label }}</q-item-label>
-                  </q-item-section>
-                  <q-item-section side>
-                    <q-item-label caption>{{ col.value }}</q-item-label>
-                  </q-item-section>
-                </q-item>
-              </q-list>
-            </q-card>
+                  <q-btn flat label="Confirm" color="primary" v-close-popup />
+                </q-card-actions>
+              </q-card>
+            </q-dialog>
           </div>
-        </template>
-      </q-table>
-    </div>
-  </q-page>
+        </q-td>
+      </template>
+    </q-table>
+  </div>
 </template>
+<script lang="ts">
+import { Vue, Options } from 'vue-class-component';
+interface IRow {
+  name: string;
+}
+@Options({})
+export default class ManageAccount extends Vue {
+  columns = [
+    {
+      name: 'name',
+      required: true,
+      label: 'Name',
+      align: 'left',
+      field: (row: IRow) => row.name,
+      format: (val: string) => `${val}`,
+    },
+    {
+      name: 'email',
+      align: 'center',
+      label: 'Email',
+      field: 'email',
+    },
+    {
+      name: 'dateCreated',
+      align: 'center',
+      label: 'Date Created',
+      field: 'dateCreated',
+    },
+    { name: 'role', align: 'center', label: 'Role', field: 'role' },
+    { name: 'status', align: 'center', label: 'Status', field: 'status' },
+    { name: 'action', align: 'center', label: 'Action', field: 'action' },
+  ];
+  rows = [
+    {
+      name: 'kim soo hyun',
+      email: 'soohyun01@gmail.com',
+      dateCreated: 'December 01, 1999',
+      role: 'Admin',
+      status: 'Active',
+      Password: 'p@ssw0rd',
+    },
+    {
+      name: 'kim yo han',
+      email: 'kimyohan03@gmail.com',
+      dateCreated: 'July 05, 1999',
+      role: 'Admin',
+      status: 'Active',
+      Password: 'p@ssw0rd',
+    },
+    {
+      name: 'han hyun seo',
+      email: 'hyunseo05@gmail.com',
+      dateCreated: 'May 08, 1998',
+      role: 'Admin',
+      status: 'Active',
+      Password: 'p@ssw0rd',
+    },
+  ];
+  dialog = false;
+  cancelEnabled = true;
+  addUser = false;
+  editRow = false;
+  Fname = '';
+  Mname = '';
+  Lname = '';
+  username = '';
+  password = '';
+  email = '';
+  role = '';
+  filter = '';
+  options = ['Admin', 'Chairperson'];
 
-<script>
-const columns = [
-  {
-    name: 'name',
-    align: 'center',
-    label: 'Employee Name',
-    field: 'name',
-    sortable: true,
-  },
-  {
-    name: 'appointmentDate',
-    label: 'Appointment Date',
-    field: 'appointmentDate',
-    sortable: true,
-  },
-  {
-    name: 'timeSlots',
-    label: 'Time Slots',
-    field: 'timeSlots'
-  },
-  {
-    name: 'purpose',
-    label: 'Purpose',
-    field: 'purpose'
-  },
-  { name: 'clientName',
-  label: 'Client Name',
-  field: 'clientName'
-  },
-  {
-    name: 'phoneNumber',
-    label: 'Phone No.',
-    field: 'phoneNumber',
-    sortable: true,
-    sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
-  },
-  {
-    name: 'emailAdd',
-    label: 'Email',
-    field: 'emailAdd',
-    sortable: true,
-    sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
-  },
-  {
-    name: 'address',
-    label: 'Address',
-    field: 'address',
-    sortable: true,
-    sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
-  },
-];
-
-const rows = [
-  {
-    name: 'Azimah D. Ampuan',
-    appointmentDate: 'September 21, 2021',
-    timeSlots: '10:00AM-11:00AM',
-    purpose: 'Academic concerns',
-    clientName: 'Sahanie D. Ampuan',
-    phoneNumber: '09615133065',
-    emailAdd: 'ampuann98@gmail.com',
-    address: 'Marawi City',
-  },
-];
-
-export default {
-  data() {
-    return {
-      prompt: false,
-      address: '',
-      filter: '',
-      selected: [],
-      columns,
-      rows,
-      participant: {
-        name: '',
-        appointmentDate: '',
-        timeSlots: '',
-        purpose: '',
-        clientName: '',
-        phoneNumber: '',
-        emailAdd: '',
-        address: '',
-      },
-    };
-  },
-
-
-};
+  onItemClick() {
+    console.log('Clicked!');
+  }
+}
 </script>
-<style lang="sass"></style>

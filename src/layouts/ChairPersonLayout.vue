@@ -3,7 +3,7 @@
     <q-header elevated class="bg-pink-10">
       <q-toolbar>
         <q-toolbar-title
-          >MSU Student Management System with Data Driven Graphical
+          >MSUStudentManagementSystemwithDataDrivenGraphical
           Reporting</q-toolbar-title
         >
         <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
@@ -90,3 +90,4 @@ export default {
   },
 };
 </script>
+

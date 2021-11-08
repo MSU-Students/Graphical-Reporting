@@ -6,7 +6,6 @@
         row-key="name"
         :rows-per-page-options="[3]"
         selection="multiple"
-        v-model:selected="selected"
         :filter="filter"
         grid
         hide-header
